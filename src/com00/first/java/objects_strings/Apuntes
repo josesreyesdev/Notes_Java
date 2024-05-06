@@ -1,0 +1,19 @@
+// Declaracion de paquetes
+mx.com.bytebank => mx = mexico, com = compañia, bytebank = nombre de la compañia.
+
+//Modificadores de acceso = Delimita el alcance de mi clase, variable, etc
+public => accesible desde cualquier parte del proyecto
+default => accesible dentro del paquete.
+protected => default + nivel de herencia o clases hijas
+private => accesible solo desde la misma clase
+
+/* Consumir codigo de un .jar generado*/
+1.- creo un paquetem lib en mi nuevo proyecto
+2.- pego el .jar en lib
+3.- para usar las clases de mi .jar necesito agregarlo a mi path de mi proyecto:
+    3.1.- En netbeens selecciono mi .jar > click derecho > Build Path > Add to Build Path
+    3.2.- Ya tengo todas mis clases generado de otros programadores
+
+/* JAR ejecutables */
+1.- file > project structure > Artifacts > + > JAR > with dependencies...
+2.- build > build artifacts > build
