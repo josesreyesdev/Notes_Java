@@ -1,9 +1,9 @@
 package com00.first.java.poo.bytebank_inheritance.mains;
 
-import poo.bytebank_inheritance.model.Accountant;
-import poo.bytebank_inheritance.model.BonusControl;
-import poo.bytebank_inheritance.model.Manager;
-import poo.bytebank_inheritance.model.Officer;
+import com00.first.java.poo.bytebank_inheritance.model.Accountant;
+import com00.first.java.poo.bytebank_inheritance.model.BonusControl;
+import com00.first.java.poo.bytebank_inheritance.model.Manager;
+import com00.first.java.poo.bytebank_inheritance.model.Officer;
 
 public class MainBonusControl {
     public static void main(String[] args) {

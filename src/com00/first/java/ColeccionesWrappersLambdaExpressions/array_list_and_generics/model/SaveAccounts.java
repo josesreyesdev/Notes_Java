@@ -1,6 +1,6 @@
 package com00.first.java.ColeccionesWrappersLambdaExpressions.array_list_and_generics.model;
 
-import poo.bytebank_inheritance.model.Account;
+import com00.first.java.poo.bytebank_inheritance.model.Account;
 
 public class SaveAccounts {
     /*

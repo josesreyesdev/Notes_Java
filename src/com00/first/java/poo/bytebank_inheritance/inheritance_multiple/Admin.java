@@ -1,8 +1,8 @@
 package com00.first.java.poo.bytebank_inheritance.inheritance_multiple;
 
 
-import poo.bytebank_inheritance.model.Officer;
-import poo.bytebank_inheritance.inheritance_multiple.utils.AuthUtil;
+import com00.first.java.poo.bytebank_inheritance.model.Officer;
+import com00.first.java.poo.bytebank_inheritance.inheritance_multiple.utils.AuthUtil;
 
 public class Admin extends Officer implements Auth {
 

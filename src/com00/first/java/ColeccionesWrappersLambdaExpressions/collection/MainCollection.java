@@ -1,6 +1,6 @@
 package com00.first.java.ColeccionesWrappersLambdaExpressions.collection;
 
-import poo.bytebank_inheritance.model.Account;
+import com00.first.java.poo.bytebank_inheritance.model.Account;
 
 import java.util.ArrayList;
 import java.util.Collection;

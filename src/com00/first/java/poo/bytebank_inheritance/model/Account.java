@@ -1,7 +1,7 @@
 package com00.first.java.poo.bytebank_inheritance.model;
 
-import org.jetbrains.annotations.NotNull;
-import poo.bytebank_inheritance.exception.InsufficientBalanceException;
+//import org.jetbrains.annotations.NotNull;
+import com00.first.java.poo.bytebank_inheritance.exception.InsufficientBalanceException;
 
 /**
  * Class account
@@ -107,7 +107,7 @@ public abstract class Account implements Comparable<Account> {
     }
 
     @Override
-    public int compareTo(@NotNull Account o) {
+    public int compareTo(/*@NotNull */ Account o) {
         /* Orden natural: Numero de Agencia */
         // return Integer.compare(this.agency, o.getAgency());
 

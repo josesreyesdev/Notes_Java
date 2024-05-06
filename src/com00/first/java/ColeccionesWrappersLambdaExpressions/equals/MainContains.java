@@ -1,7 +1,7 @@
 package com00.first.java.ColeccionesWrappersLambdaExpressions.equals;
 
-import poo.bytebank_inheritance.model.Account;
-import poo.bytebank_inheritance.model.CheckingAccount;
+import com00.first.java.poo.bytebank_inheritance.model.Account;
+import com00.first.java.poo.bytebank_inheritance.model.CheckingAccount;
 
 import java.util.ArrayList;
 

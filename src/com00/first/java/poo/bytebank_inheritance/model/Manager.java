@@ -1,7 +1,7 @@
 package com00.first.java.poo.bytebank_inheritance.model;
 
-import poo.bytebank_inheritance.inheritance_multiple.Auth;
-import poo.bytebank_inheritance.inheritance_multiple.utils.AuthUtil;
+import com00.first.java.poo.bytebank_inheritance.inheritance_multiple.Auth;
+import com00.first.java.poo.bytebank_inheritance.inheritance_multiple.utils.AuthUtil;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
 package com00.first.java.poo.bytebank_inheritance.mains;
 
-import poo.bytebank_inheritance.model.Accountant;
-import poo.bytebank_inheritance.model.Officer;
+import com00.first.java.poo.bytebank_inheritance.model.Accountant;
+import com00.first.java.poo.bytebank_inheritance.model.Officer;
 
 public class MainOfficer {
     public static void main(String[] args) {

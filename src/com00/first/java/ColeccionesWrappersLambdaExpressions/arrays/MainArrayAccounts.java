@@ -1,6 +1,6 @@
 package com00.first.java.ColeccionesWrappersLambdaExpressions.arrays;
 
-import poo.bytebank_inheritance.model.*;
+import com00.first.java.poo.bytebank_inheritance.model.*;
 
 import java.util.Arrays;
 

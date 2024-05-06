@@ -1,7 +1,7 @@
 package com00.first.java.poo.bytebank_inheritance.model;
 
-import poo.bytebank_inheritance.exception.InsufficientBalanceException;
-import poo.bytebank_inheritance.inheritance_multiple.account.Tributation;
+import com00.first.java.poo.bytebank_inheritance.exception.InsufficientBalanceException;
+import com00.first.java.poo.bytebank_inheritance.inheritance_multiple.account.Tributation;
 
 //Cuenta corriente
 public class CheckingAccount extends Account implements Tributation {

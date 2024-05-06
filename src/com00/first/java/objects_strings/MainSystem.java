@@ -1,7 +1,7 @@
 package com00.first.java.objects_strings;
 
-import poo.bytebank_inheritance.model.CheckingAccount;
-import poo.bytebank_inheritance.model.SavingsAccount;
+import com00.first.java.poo.bytebank_inheritance.model.CheckingAccount;
+import com00.first.java.poo.bytebank_inheritance.model.SavingsAccount;
 
 public class MainSystem {
     public static void main(String[] args) {

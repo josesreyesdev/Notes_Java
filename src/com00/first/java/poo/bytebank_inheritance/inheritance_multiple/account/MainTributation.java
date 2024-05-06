@@ -1,6 +1,6 @@
 package com00.first.java.poo.bytebank_inheritance.inheritance_multiple.account;
 
-import poo.bytebank_inheritance.model.CheckingAccount;
+import com00.first.java.poo.bytebank_inheritance.model.CheckingAccount;
 
 public class MainTributation {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class MainTributation {
 
         CalculatorTax calculatorTax = new CalculatorTax();
 
-        calculatorTax.register(cc);
+        calculatorTax.register((Tributation) cc);
         calculatorTax.register(lifeInsurance);
 
         System.out.println("Total tax: "+ calculatorTax.getTotalTax());

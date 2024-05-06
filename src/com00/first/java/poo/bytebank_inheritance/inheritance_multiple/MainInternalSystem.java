@@ -1,6 +1,6 @@
 package com00.first.java.poo.bytebank_inheritance.inheritance_multiple;
 
-import poo.bytebank_inheritance.model.Manager;
+import com00.first.java.poo.bytebank_inheritance.model.Manager;
 
 public class MainInternalSystem {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class MainInternalSystem {
         Manager manager = new Manager();
         Admin admin = new Admin();
 
-        internalSystem.authUser(manager);
+        internalSystem.authUser((Auth) manager);
         internalSystem.authUser(admin);
     }
 }

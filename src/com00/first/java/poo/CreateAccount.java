@@ -1,6 +1,6 @@
 package com00.first.java.poo;
 
-import poo.project_bytebank.Account;
+import com00.first.java.poo.project_bytebank.Account;
 
 public class CreateAccount {
     public static void main(String[] args) {

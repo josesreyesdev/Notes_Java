@@ -1,9 +1,9 @@
 package com00.first.java.ColeccionesWrappersLambdaExpressions.order_list;
 
-import poo.bytebank_inheritance.model.Account;
-import poo.bytebank_inheritance.model.CheckingAccount;
-import poo.bytebank_inheritance.model.Client;
-import poo.bytebank_inheritance.model.SavingsAccount;
+import com00.first.java.poo.bytebank_inheritance.model.Account;
+import com00.first.java.poo.bytebank_inheritance.model.CheckingAccount;
+import com00.first.java.poo.bytebank_inheritance.model.Client;
+import com00.first.java.poo.bytebank_inheritance.model.SavingsAccount;
 
 import java.util.ArrayList;
 import java.util.Comparator;
