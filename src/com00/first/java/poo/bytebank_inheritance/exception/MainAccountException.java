@@ -7,6 +7,10 @@ public class MainAccountException {
     public static void main(String[] args) {
         Account account = new SavingsAccount(123, 456);
         account.deposit(200.0);
-        account.withdrawAccountBalance(250.0);
+        try {
+            account.withdrawAccountBalance(250.0);
+        } catch (InsufficientBalanceException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
