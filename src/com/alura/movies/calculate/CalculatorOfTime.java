@@ -4,9 +4,9 @@ import com.alura.movies.models.Title;
 
 public class CalculatorOfTime {
 
-    private int totalTime;
+    private String totalTime;
 
-    public int getTotalTime() {
+    public String getTotalTime() {
         return totalTime;
     }
 
