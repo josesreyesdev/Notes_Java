@@ -61,10 +61,15 @@ public class Main {
         movie3.setDirector("Brais Willis");
         movie3.setDurationInMinutes(180);
 
+        var movie4 = new Movie("Matrix", 2006);
+        movie3.setDirector("Brais Moure");
+        movie3.setDurationInMinutes(180);
+
         ArrayList<Movie> movieList = new ArrayList<>();
         movieList.add(movie1);
         movieList.add(movie2);
         movieList.add(movie3);
+        movieList.add(movie4);
 
         System.out.println();
         System.out.println("Tamaño de mi lista: " + movieList.size());
