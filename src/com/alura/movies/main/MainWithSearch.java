@@ -1,5 +1,7 @@
 package com.alura.movies.main;
 
+import com.alura.movies.utils.Configuration;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,9 +18,9 @@ public class MainWithSearch {
         var movieName = scanner.nextLine().trim();
         var movieResultName = movieName.replace(" ", "+%26+");
 
-        String url = "https://www.omdbapi.com/?t=" + movieResultName +"&apikey=afd234123";
+        String apiKey = Configuration.API_KEY;
+        String url = "https://www.omdbapi.com/?t=" + movieResultName +"&apikey=" + apiKey;
 
-        // & = %26
         // REQUEST
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
