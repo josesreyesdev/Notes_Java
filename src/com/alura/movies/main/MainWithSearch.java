@@ -1,12 +1,10 @@
 package com.alura.movies.main;
 
-import com.alura.movies.models.Movie;
 import com.alura.movies.models.Title;
 import com.alura.movies.utils.Configuration;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
