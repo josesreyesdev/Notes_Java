@@ -1,11 +1,10 @@
 package com.alura.movies.models;
 
 import com.alura.movies.calculate.Classification;
-import com.google.gson.annotations.SerializedName;
 
 public class Movie extends Title implements Classification {
 
-    @SerializedName("Director") private String director;
+    private String director;
 
     public Movie(String name, int releaseDate) {
         super(name, releaseDate);

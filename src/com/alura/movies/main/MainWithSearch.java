@@ -1,8 +1,11 @@
 package com.alura.movies.main;
 
 import com.alura.movies.models.Title;
+import com.alura.movies.models.TitleDto;
 import com.alura.movies.utils.Configuration;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -37,11 +40,15 @@ public class MainWithSearch {
             String json = response.body();
             System.out.println("Response => " + json);
 
-            // Usando GSON para convertir JSON a objeto Java
-            Gson gson = new Gson();
-            Title movie = gson.fromJson(json, Title.class);
+            // Usando GSON para convertir JSON a objeto Java, implementar el jar del paquete GSON
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create();
+            TitleDto myMovieDto = gson.fromJson(json, TitleDto.class);
+            System.out.println(myMovieDto);
 
-            System.out.println(movie);
+            Title myMovie = new Title(myMovieDto);
+            System.out.println(myMovie);
         } catch (IOException | InterruptedException e) {
             System.out.println("Error al intentar hacer la solicitud");
             throw new RuntimeException(e);
