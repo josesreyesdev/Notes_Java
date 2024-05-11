@@ -1,12 +1,20 @@
 package com.alura.movies.models;
 
 public class Title implements Comparable<Title> {
+
     private String name;
     private int releaseDate;
     private int durationInMinutes;
     private boolean includedInThePlan;
     private double sumEvaluations;
     private int totalEvaluations;
+
+    public Title(TitleDto titleDto) {
+
+        this.name = titleDto.title();
+        this.releaseDate = Integer.parseInt(titleDto.year());
+        this.durationInMinutes = Integer.valueOf(titleDto.runtime().substring(0, 2)); // convirtiendo los primeros 3 digitos a numero
+    }
 
     public Title(String name, int releaseDate) {
         this.name = name;
@@ -61,4 +69,10 @@ public class Title implements Comparable<Title> {
         return this.getName().compareTo(otherTitle.getName());
     }
 
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", durationInMinutes=" + durationInMinutes + " minutes";
+    }
 }
