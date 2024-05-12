@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class MainWithSearch {
-    public static void main(String[] args) /*throws IOException, InterruptedException */ {
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -27,13 +27,14 @@ public class MainWithSearch {
         String url = "https://www.omdbapi.com/?t=" + movieResultName + "&apikey=" + apiKey;
 
         // REQUEST
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .build();
 
-        // RESPONSE
-         try {
+            // RESPONSE
+
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -47,41 +48,20 @@ public class MainWithSearch {
             TitleDto myMovieDto = gson.fromJson(json, TitleDto.class);
             System.out.println(myMovieDto);
 
-             try {
-                 Title myMovie = new Title(myMovieDto);
+            try {
+                Title myMovie = new Title( myMovieDto);
 
-                 System.out.println(myMovie);
-             } catch (NumberFormatException exception) {
-                 System.out.println("Excepcion al querer transdormar un N/A => \n" + exception.getMessage());
-             }
+                System.out.println("Title ya convertido: " + myMovie);
+            } catch (NumberFormatException exception) {
+                System.out.println("Excepcion al querer transdormar un N/A => " + exception.getMessage());
+            }
 
-             System.out.println("Finalizó la ejecución");
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Error al intentar hacer la solicitud");
+            System.out.println("Finalizó la ejecución");
+        } catch (IOException | InterruptedException | IllegalArgumentException e) {
+            System.out.println("Error al intentar hacer la solicitud, verifique la URI");
             throw new RuntimeException(e);
+        } catch (Exception ex) {
+            System.out.println("Ocurrio un error inesperado");
         }
-
-         /*HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-
-        String json = response.body();
-        System.out.println("Response => " + json);
-
-        // Usando GSON para convertir JSON a objeto Java, implementar el jar del paquete GSON
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create();
-        TitleDto myMovieDto = gson.fromJson(json, TitleDto.class);
-        System.out.println(myMovieDto);
-
-        try {
-            Title myMovie = new Title(myMovieDto);
-
-            System.out.println(myMovie);
-        } catch (NumberFormatException exception) {
-            System.out.println("Excepcion al querer transdormar un N/A => \n" + exception.getMessage());
-        }
-
-        System.out.println("Finalizo la ejecución del programa."); */
     }
 }
