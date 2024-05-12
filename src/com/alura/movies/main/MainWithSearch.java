@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class MainWithSearch {
-    public static void main(String[] args) {
+    public static void main(String[] args) /*throws IOException, InterruptedException */ {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -33,7 +33,7 @@ public class MainWithSearch {
                 .build();
 
         // RESPONSE
-        try {
+         try {
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -47,11 +47,41 @@ public class MainWithSearch {
             TitleDto myMovieDto = gson.fromJson(json, TitleDto.class);
             System.out.println(myMovieDto);
 
-            Title myMovie = new Title(myMovieDto);
-            System.out.println(myMovie);
+             try {
+                 Title myMovie = new Title(myMovieDto);
+
+                 System.out.println(myMovie);
+             } catch (NumberFormatException exception) {
+                 System.out.println("Excepcion al querer transdormar un N/A => \n" + exception.getMessage());
+             }
+
+             System.out.println("Finalizó la ejecución");
         } catch (IOException | InterruptedException e) {
             System.out.println("Error al intentar hacer la solicitud");
             throw new RuntimeException(e);
         }
+
+         /*HttpResponse<String> response = client
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        String json = response.body();
+        System.out.println("Response => " + json);
+
+        // Usando GSON para convertir JSON a objeto Java, implementar el jar del paquete GSON
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        TitleDto myMovieDto = gson.fromJson(json, TitleDto.class);
+        System.out.println(myMovieDto);
+
+        try {
+            Title myMovie = new Title(myMovieDto);
+
+            System.out.println(myMovie);
+        } catch (NumberFormatException exception) {
+            System.out.println("Excepcion al querer transdormar un N/A => \n" + exception.getMessage());
+        }
+
+        System.out.println("Finalizo la ejecución del programa."); */
     }
 }
