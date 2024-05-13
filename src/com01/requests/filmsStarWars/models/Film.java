@@ -19,7 +19,22 @@ public class Film {
     private String edited;
     private String url;
 
-
+    public Film(FilmDto film) {
+        this.title = film.title();
+        this.episodeId = film.episodeId();
+        this.openingCrawl = film.openingCrawl();
+        this.director = film.director();
+        this.producer = film.producer();
+        this.releaseDate = film.releaseDate();
+        this.characters = film.characters();
+        this.planets = film.planets();
+        this.starships = film.starships();
+        this.vehicles = film.vehicles();
+        this.species = film.species();
+        this.created = film.created();
+        this.edited = film.edited();
+        this.url = film.url();
+    }
 
     public String getTitle() {
         return title;
