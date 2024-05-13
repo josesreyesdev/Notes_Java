@@ -1,5 +1,7 @@
 package com.alura.movies.models;
 
+import com.alura.movies.exceptions.ErrorToConvertDurationException;
+
 public class Title implements Comparable<Title> {
 
     private String name;
@@ -13,7 +15,14 @@ public class Title implements Comparable<Title> {
 
         this.name = titleDto.title();
         this.releaseDate = Integer.parseInt(titleDto.year());
-        this.durationInMinutes = Integer.valueOf(titleDto.runtime().substring(0, 2)); // convirtiendo los primeros 3 digitos a numero
+
+        if (titleDto.runtime().contains("N/A")) {
+            throw new ErrorToConvertDurationException("No pude convertir la duración por contener N/A");
+        } else  {
+            this.durationInMinutes = Integer.valueOf(titleDto.runtime()
+                    .substring(0, 3) // convirtiendo los primeros 3 digitos a numero
+                    .replace(" ", "")); // en caso de tener solo dos digitos reemplazo el space por nada
+        }
     }
 
     public Title(String name, int releaseDate) {
