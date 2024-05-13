@@ -8,6 +8,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -56,6 +57,11 @@ public class MainWithSearch {
                 Title myMovie = new Title(myMovieDto);
 
                 System.out.println("Title ya convertido: " + myMovie);
+
+                // Escribir un archivo
+                FileWriter writer = new FileWriter("movies.txt");
+                writer.write(myMovie.toString());
+                writer.close();
             } catch (NumberFormatException exception) {
                 System.out.println("Excepcion al querer transformar un valor a Title => " + exception.getMessage());
             }
