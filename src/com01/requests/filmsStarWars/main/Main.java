@@ -1,20 +1,10 @@
 package com01.requests.filmsStarWars.main;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com01.requests.filmsStarWars.files.CreateFile;
+import com01.requests.filmsStarWars.files.FileGenerator;
 import com01.requests.filmsStarWars.models.Film;
-import com01.requests.filmsStarWars.models.FilmDto;
-import com01.requests.filmsStarWars.request.RequestFilm;
-import com01.requests.filmsStarWars.response.ResponseFilm;
+import com01.requests.filmsStarWars.models.SearchFilm;
 
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,8 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Film> listOfMovies = new ArrayList<>();
 
-        // Usando GSON para convertir JSON a objeto Java.
-        Gson gson = getGSON();
+        Set<Integer> uniqueNumbers = new HashSet<>();
 
         while (true) {
             System.out.println();
@@ -46,39 +35,19 @@ public class Main {
                     break;
                 }
 
-                String uri = "https://swapi.py4e.com/api/films/" + movieNumber + "/";
+                if (!uniqueNumbers.contains(movieNumber)) {
+                    uniqueNumbers.add(movieNumber);
 
-                try {
-                    //REQUEST
-                    RequestFilm requestFilm = new RequestFilm(uri);
-                    HttpClient client = requestFilm.getClient();
-                    HttpRequest request = requestFilm.getRequest();
+                    SearchFilm searchFilm = new SearchFilm();
+                    Film miFilm = searchFilm.searchMovie(movieNumber);
 
-                    //RESPONSE
-                    ResponseFilm responseFilm = new ResponseFilm(client, request);
-                    HttpResponse<String> response = responseFilm.getResponse();
+                    System.out.println("My Film: " + miFilm);
 
-                    String json = response.body();
-                    System.out.println("Response => " + json);
-
-                    // JSON convert to FilmDTO
-                    FilmDto myFilmDto = gson.fromJson(json, FilmDto.class);
-                    System.out.println("My Film Dto: " + myFilmDto);
-
-                    try {
-                        Film myFilm = new Film(myFilmDto);
-
-                        System.out.println("Title ya convertido: " + myFilm);
-
-                        listOfMovies.add(myFilm);
-                    } catch (NumberFormatException exception) {
-                        System.out.println("Excepcion al querer transformar un valor a Title => " + exception.getMessage());
-                    }
-
-                } catch (IllegalArgumentException exception) {
-                    System.out.println("Error al intentar hacer la solicitud, verifique la URI");
-                    throw new RuntimeException(exception);
+                    listOfMovies.add(miFilm);
+                } else {
+                    System.out.println("¡Ya has ingresado ese número!");
                 }
+
             } else {
                 System.out.println("Entrada inválida. Por favor, ingresa un número.");
                 scanner.next(); // Limpiar la entrada del scanner
@@ -88,17 +57,9 @@ public class Main {
         System.out.println(listOfMovies);
 
         // Escribir un archivo a json
-        CreateFile createFile = new CreateFile(listOfMovies, gson);
-        createFile.getFileWriter("films");
+        FileGenerator generator = new FileGenerator();
+        generator.getFileWriter(listOfMovies, "films");
 
         System.out.println("Termino la ejecución");
-    }
-
-    private static Gson getGSON() {
-        // Usando GSON para convertir JSON a objeto Java, implementar el jar del paquete GSON
-        return new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .setPrettyPrinting()
-                .create();
     }
 }
