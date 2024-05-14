@@ -3,7 +3,9 @@ package com01.requests.filmsStarWars.main;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com01.requests.filmsStarWars.files.CreateFile;
 import com01.requests.filmsStarWars.models.Film;
+import com01.requests.filmsStarWars.models.FilmDto;
 import com01.requests.filmsStarWars.request.RequestFilm;
 import com01.requests.filmsStarWars.response.ResponseFilm;
 
@@ -27,41 +29,67 @@ public class Main {
             System.out.println();
 
             System.out.println("Ingresa un número entre 1 a 6 para darte los detalles, " +
-                    "e ingresa cualquier otro número para salir: ");
+                    "ó ingresa cualquier otro número para salir: ");
             System.out.println("1.- A New Hope");
             System.out.println("2.- The Empire Strikes Back");
             System.out.println("3.- Return of the Jedi");
             System.out.println("4.- A New Hope II");
             System.out.println("5.- Attack of the Clones");
             System.out.println("6.- Revenge of the Sith");
+            System.out.println();
 
-            int movieNumber = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                int movieNumber = scanner.nextInt();
 
-            if (movieNumber < 1 || movieNumber > 6) {
-                System.out.println("Sali del programa");
-                break;
-            }
+                if (movieNumber < 1 || movieNumber > 6) {
+                    System.out.println("Sali del programa");
+                    break;
+                }
 
-            String uri = "https://swapi.dev/api/films/"+ movieNumber +"/";
+                String uri = "https://swapi.py4e.com/api/films/" + movieNumber + "/";
 
-            try {
-                //REQUEST
-                RequestFilm requestFilm = new RequestFilm(uri);
-                HttpClient client = requestFilm.getClient();
-                HttpRequest request = requestFilm.getRequest();
+                try {
+                    //REQUEST
+                    RequestFilm requestFilm = new RequestFilm(uri);
+                    HttpClient client = requestFilm.getClient();
+                    HttpRequest request = requestFilm.getRequest();
 
-                //RESPONSE
-                ResponseFilm responseFilm = new ResponseFilm(client, request);
-                HttpResponse<String> response = responseFilm.getResponse();
+                    //RESPONSE
+                    ResponseFilm responseFilm = new ResponseFilm(client, request);
+                    HttpResponse<String> response = responseFilm.getResponse();
 
-                String json = response.body();
-                System.out.println("Response => " + json);
+                    String json = response.body();
+                    System.out.println("Response => " + json);
 
-            } catch (IllegalArgumentException exception) {
-                System.out.println("Error al intentar hacer la solicitud, verifique la URI");
-                throw new RuntimeException(exception);
+                    // JSON convert to FilmDTO
+                    FilmDto myFilmDto = gson.fromJson(json, FilmDto.class);
+                    System.out.println("My Film Dto: " + myFilmDto);
+
+                    try {
+                        Film myFilm = new Film(myFilmDto);
+
+                        System.out.println("Title ya convertido: " + myFilm);
+
+                        listOfMovies.add(myFilm);
+                    } catch (NumberFormatException exception) {
+                        System.out.println("Excepcion al querer transformar un valor a Title => " + exception.getMessage());
+                    }
+
+                } catch (IllegalArgumentException exception) {
+                    System.out.println("Error al intentar hacer la solicitud, verifique la URI");
+                    throw new RuntimeException(exception);
+                }
+            } else {
+                System.out.println("Entrada inválida. Por favor, ingresa un número.");
+                scanner.next(); // Limpiar la entrada del scanner
             }
         }
+
+        System.out.println(listOfMovies);
+
+        // Escribir un archivo a json
+        CreateFile createFile = new CreateFile(listOfMovies, gson);
+        createFile.getFileWriter("films");
 
         System.out.println("Termino la ejecución");
     }

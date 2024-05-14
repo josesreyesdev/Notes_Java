@@ -19,6 +19,11 @@ public class Film {
     private String edited;
     private String url;
 
+    public Film(String title, int episodeId) {
+        this.title = title;
+        this.episodeId = episodeId;
+    }
+
     public Film(FilmDto film) {
         this.title = film.title();
         this.episodeId = film.episodeId();
