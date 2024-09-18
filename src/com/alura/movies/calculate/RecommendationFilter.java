@@ -1,5 +1,7 @@
 package com.alura.movies.calculate;
 
+import com.alura.movies.models.Classification;
+
 public class RecommendationFilter {
 
     public void filter(Classification classification) {
