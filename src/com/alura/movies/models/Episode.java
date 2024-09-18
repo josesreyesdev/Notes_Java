@@ -1,5 +1,7 @@
 package com.alura.movies.models;
 
+import com.alura.movies.calculate.Classification;
+
 public class Episode implements Classification {
     private int number;
     private String name;

@@ -1,5 +1,7 @@
 package com.alura.movies.models;
 
+import com.alura.movies.calculate.Classification;
+
 public class Movie extends Title implements Classification {
 
     private String director;
