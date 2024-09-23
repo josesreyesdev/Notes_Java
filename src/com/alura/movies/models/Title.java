@@ -2,10 +2,12 @@ package com.alura.movies.models;
 
 import com.alura.movies.exceptions.ErrorToConvertDurationException;
 
-public class Title implements Comparable<Title> {
+import java.util.Comparator;
 
-    private String name;
-    private int releaseDate;
+public class Title implements Comparable<Title>, Comparator<Title> {
+
+    private final String name;
+    private final int releaseDate;
     private int durationInMinutes;
     private boolean includedInThePlan;
     private double sumEvaluations;
@@ -19,7 +21,7 @@ public class Title implements Comparable<Title> {
         if (titleDto.runtime().contains("N/A")) {
             throw new ErrorToConvertDurationException("No pude convertir la duración por contener N/A");
         } else  {
-            this.durationInMinutes = Integer.valueOf(titleDto.runtime()
+            this.durationInMinutes = Integer.parseInt(titleDto.runtime()
                     .substring(0, 3) // convirtiendo los primeros 3 digitos a numero
                     .replace(" ", "")); // en caso de tener solo dos digitos reemplazo el space por nada
         }
@@ -83,5 +85,10 @@ public class Title implements Comparable<Title> {
         return "(name = " + name +
                 ", release_date = " + releaseDate +
                 ", durationInMinutes = " + durationInMinutes + " minutes)";
+    }
+
+    @Override
+    public int compare(Title o1, Title o2) {
+        return o1.name.compareTo(o2.name);
     }
 }
