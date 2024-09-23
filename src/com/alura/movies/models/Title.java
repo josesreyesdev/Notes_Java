@@ -21,7 +21,7 @@ public class Title implements Comparable<Title>, Comparator<Title> {
         if (titleDto.runtime().contains("N/A")) {
             throw new ErrorToConvertDurationException("No pude convertir la duración por contener N/A");
         } else  {
-            this.durationInMinutes = Integer.valueOf(titleDto.runtime()
+            this.durationInMinutes = Integer.parseInt(titleDto.runtime()
                     .substring(0, 3) // convirtiendo los primeros 3 digitos a numero
                     .replace(" ", "")); // en caso de tener solo dos digitos reemplazo el space por nada
         }
