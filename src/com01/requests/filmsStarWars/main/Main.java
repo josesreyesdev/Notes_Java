@@ -31,7 +31,7 @@ public class Main {
                 int movieNumber = scanner.nextInt();
 
                 if (movieNumber < 1 || movieNumber > 6) {
-                    System.out.println("Sali del programa");
+                    System.out.println("Salir del programa");
                     break;
                 }
 
