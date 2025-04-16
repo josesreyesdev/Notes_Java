@@ -19,7 +19,7 @@ public class Ciclos {
         }
     }
 
-    public void tablaMultiply( int num) {
+    public void tablaMultiply(int num) {
         int counter = 1;
         int result;
         while (counter <= 10) {
@@ -74,7 +74,7 @@ public class Ciclos {
 
     public void factorial(int numFactorial) {
         int facto = 1;
-        for ( int n = 1; n <= numFactorial; n++) {
+        for (int n = 1; n <= numFactorial; n++) {
             facto *= n;
             System.out.println( n + " = " + facto);
         }
